@@ -18,15 +18,13 @@
             --bg-card: #0A1628;
             --bg-card-hover: #0f1f35;
             --border: #1a2a40;
-            --blue: #00BFFF;
-            --blue-glow: rgba(0, 191, 255, 0.12);
+            --cyan: #00BFFF;
+            --cyan-glow: rgba(0, 191, 255, 0.12);
             --green: #00e5a0;
             --red: #ef4444;
-            --yellow: #eab308;
             --text: #A8B5C2;
             --text-dim: #6B7B8C;
             --text-muted: #3a4f65;
-            --cyan: #00BFFF;
             --silver: #A8B5C2;
             --steel: #6B7B8C;
         }
@@ -39,413 +37,168 @@
         }
 
         .bg-grid {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 linear-gradient(rgba(0, 191, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: 0;
+            background-size: 60px 60px; z-index: 0;
         }
 
         .bg-glow {
-            position: fixed;
-            top: -200px; left: 50%;
-            transform: translateX(-50%);
+            position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
             width: 800px; height: 600px;
             background: radial-gradient(circle, rgba(0, 191, 255, 0.06) 0%, transparent 70%);
             z-index: 0;
         }
 
         nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            padding: 16px 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
+            position: fixed; top: 0; left: 0; right: 0; padding: 16px 32px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); z-index: 100;
         }
 
-        .logo {
-            font-size: 20px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .logo { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .logo-icon { width: 32px; height: 32px; border-radius: 8px; overflow: hidden; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
 
-        .logo-icon {
-            width: 32px; height: 32px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .logo-icon img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: var(--text); }
 
         .nav-btn {
-            background: linear-gradient(135deg, #005F73, #00BFFF);
-            color: white !important;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 13px;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: 1px solid rgba(0, 191, 255, 0.3);
+            background: linear-gradient(135deg, #005F73, #00BFFF); color: white !important;
+            padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 13px;
+            text-decoration: none; transition: all 0.2s; border: 1px solid rgba(0, 191, 255, 0.3);
         }
-
         .nav-btn:hover { box-shadow: 0 0 16px rgba(0, 191, 255, 0.3); }
 
-        /* Hero */
         .hero {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 120px 24px 40px;
-            max-width: 800px;
-            margin: 0 auto;
+            position: relative; z-index: 1; text-align: center;
+            padding: 110px 24px 30px; max-width: 800px; margin: 0 auto;
+        }
+
+        .hero-logo {
+            width: 100px; height: 100px; border-radius: 18px; margin-bottom: 20px;
+            border: 2px solid var(--border); box-shadow: 0 0 40px rgba(0, 191, 255, 0.15);
         }
 
         .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--blue-glow);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            color: var(--blue);
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 24px;
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--cyan-glow); border: 1px solid rgba(0, 191, 255, 0.2);
+            color: var(--cyan); padding: 6px 14px; border-radius: 100px;
+            font-size: 13px; font-weight: 600; margin-bottom: 20px;
         }
+        .badge .pulse { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-        .badge .pulse {
-            width: 8px; height: 8px;
-            background: var(--green);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        h1 {
-            font-size: clamp(32px, 5vw, 52px);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
-        }
-
+        h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 900; line-height: 1.1; margin-bottom: 12px; letter-spacing: -0.02em; }
         h1 span { color: var(--cyan); }
+        .subtitle { font-size: 15px; color: var(--text-dim); line-height: 1.6; max-width: 500px; margin: 0 auto; }
 
-        .subtitle {
-            font-size: 16px;
-            color: var(--text-dim);
-            line-height: 1.6;
-            max-width: 560px;
-            margin: 0 auto 24px;
-        }
-
-        /* Stats bar */
         .stats-bar {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            padding: 24px;
-            flex-wrap: wrap;
+            position: relative; z-index: 1; display: flex; justify-content: center;
+            gap: 40px; padding: 20px 24px; flex-wrap: wrap;
         }
+        .stat { text-align: center; }
+        .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; color: var(--cyan); }
+        .stat-label { font-size: 11px; color: var(--text-dim); margin-top: 2px; font-weight: 500; }
 
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--blue);
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: var(--text-dim);
-            margin-top: 4px;
-            font-weight: 500;
-        }
-
-        /* Filter tabs */
         .filter-bar {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
+            position: relative; z-index: 1; max-width: 1100px; margin: 0 auto;
+            padding: 0 24px 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
         }
-
         .filter-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim);
+            padding: 7px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
         }
-
         .filter-btn:hover { border-color: var(--text-muted); color: var(--text); }
         .filter-btn.active { background: linear-gradient(135deg, #005F73, #00BFFF); border-color: var(--cyan); color: white; }
-
         .filter-spacer { flex: 1; }
 
-        #status-indicator {
-            font-size: 12px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        #status-indicator { font-size: 11px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+        #status-indicator .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
 
-        #status-indicator .dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--green);
-            animation: pulse 2s infinite;
-        }
+        .section { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 8px 24px 40px; }
 
-        /* Token feed */
-        .section {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 16px 24px 60px;
-        }
-
-        .feed-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .feed-table th {
-            padding: 14px 16px;
-            text-align: left;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 1px solid var(--border);
-            background: rgba(255,255,255,0.02);
-        }
-
-        .feed-table td {
-            padding: 12px 16px;
-            font-size: 13px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .feed-table tr:last-child td { border-bottom: none; }
-        .feed-table tr:hover td { background: var(--bg-card-hover); }
-        .feed-table tr { cursor: pointer; transition: background 0.15s; }
-
-        .token-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .token-icon {
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            background: var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-dim);
-            flex-shrink: 0;
-        }
-
-        .token-name {
-            font-weight: 600;
-            color: var(--text);
-            font-size: 14px;
-        }
-
-        .token-ticker {
-            color: var(--text-muted);
-            font-size: 11px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .tag-clanker {
-            background: rgba(0, 191, 255, 0.12);
-            color: #00BFFF;
-        }
-
-        .tag-bankr {
-            background: rgba(234, 179, 8, 0.15);
-            color: #eab308;
-        }
-
-        .tag-unknown {
-            background: rgba(100, 116, 139, 0.15);
-            color: #94a3b8;
-        }
-
-        .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
-        .green { color: var(--green); }
-        .red { color: var(--red); }
-        .dim { color: var(--text-muted); }
-
-        .addr {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--blue);
-            text-decoration: none;
-        }
-        .addr:hover { text-decoration: underline; }
-
-        .loading-row td {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-dim);
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 20px; height: 20px;
-            border: 2px solid var(--border);
-            border-top: 2px solid var(--blue);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .new-token {
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { background: rgba(0, 191, 255, 0.08); }
-            to { background: transparent; }
-        }
-
-        /* Features */
-        .features-section {
-            position: relative;
-            z-index: 1;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 24px 80px;
-        }
-
-        .features-grid {
+        .token-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 12px;
         }
 
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
+        .token-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 16px; transition: all 0.2s; cursor: pointer;
         }
+        .token-card:hover { border-color: rgba(0, 191, 255, 0.3); background: var(--bg-card-hover); transform: translateY(-1px); }
+        .token-card.new { animation: cardFadeIn 0.5s ease; }
 
-        .feature-icon { font-size: 20px; margin-bottom: 8px; }
-        .feature-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-        .feature-desc { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+        @keyframes cardFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .token-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .token-img {
+            width: 40px; height: 40px; border-radius: 50%; background: var(--border);
+            object-fit: cover; flex-shrink: 0;
+        }
+        .token-img-placeholder {
+            width: 40px; height: 40px; border-radius: 50%; background: var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 700; color: var(--text-dim); flex-shrink: 0;
+        }
+        .token-title { font-weight: 700; font-size: 15px; color: #e2e8f0; }
+        .token-symbol { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cyan); }
+
+        .token-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+        .tag-clanker { background: rgba(0, 191, 255, 0.12); color: #00BFFF; }
+        .tag-verified { background: rgba(0, 229, 160, 0.12); color: #00e5a0; }
+        .tag-champagne { background: rgba(234, 179, 8, 0.12); color: #eab308; }
+
+        .token-details { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .detail-item { }
+        .detail-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .detail-value { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text); }
+
+        .token-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+        .token-time { font-size: 11px; color: var(--text-muted); }
+        .token-links a {
+            color: var(--cyan); text-decoration: none; font-size: 11px; font-weight: 600;
+            padding: 3px 8px; border: 1px solid rgba(0, 191, 255, 0.2); border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .token-links a:hover { background: rgba(0, 191, 255, 0.1); }
+
+        .loading { text-align: center; padding: 60px; color: var(--text-dim); font-size: 14px; }
+        .loading-spinner {
+            display: inline-block; width: 24px; height: 24px;
+            border: 2px solid var(--border); border-top: 2px solid var(--cyan);
+            border-radius: 50%; animation: spin 1s linear infinite; margin-right: 8px; vertical-align: middle;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .load-more {
+            display: block; margin: 24px auto 0; background: var(--bg-card); border: 1px solid var(--border);
+            color: var(--cyan); padding: 12px 32px; border-radius: 10px; font-weight: 600; font-size: 14px;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .load-more:hover { background: var(--bg-card-hover); border-color: var(--cyan); }
 
         footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 24px;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 13px;
+            position: relative; z-index: 1; text-align: center; padding: 24px;
+            border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px;
         }
-
-        footer a {
-            color: var(--text-dim);
-            text-decoration: none;
-        }
-
+        footer a { color: var(--text-dim); text-decoration: none; }
         footer a:hover { color: var(--text); }
 
-        .error-msg {
-            text-align: center;
-            padding: 40px;
-            color: var(--red);
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
             nav { padding: 12px 16px; }
             .nav-links a:not(.nav-btn) { display: none; }
-            .stats-bar { gap: 20px; }
-            .stat-value { font-size: 20px; }
-            .feed-table { font-size: 12px; }
-            .feed-table th:nth-child(4),
-            .feed-table td:nth-child(4),
-            .feed-table th:nth-child(5),
-            .feed-table td:nth-child(5) { display: none; }
-            .feed-table th, .feed-table td { padding: 10px 8px; }
+            .stats-bar { gap: 16px; }
+            .stat-value { font-size: 18px; }
+            .token-grid { grid-template-columns: 1fr; }
+            .hero { padding-top: 90px; }
         }
     </style>
 </head>
@@ -459,36 +212,30 @@
             <span style="color: var(--silver)">Clanker</span><span style="color: var(--cyan)">Scan</span>
         </div>
         <div class="nav-links">
-            <a href="#features">Features</a>
             <a href="https://x.com/ClankerScan" target="_blank">Twitter</a>
             <a href="https://x.com/ClankerScan" target="_blank" class="nav-btn">Follow @ClankerScan</a>
         </div>
     </nav>
 
     <section class="hero">
-        <img src="logo.jpg" alt="ClankerScan" style="width: 120px; height: 120px; border-radius: 20px; margin-bottom: 24px; border: 2px solid var(--border); box-shadow: 0 0 40px rgba(0, 191, 255, 0.15);">
-        <div class="badge">
-            <span class="pulse"></span>
-            Live — Tracking Base Mainnet
-        </div>
+        <img src="logo.jpg" alt="ClankerScan" class="hero-logo">
+        <div class="badge"><span class="pulse"></span> Live — Tracking Base Mainnet</div>
         <h1>Track Every <span>Token Launch</span> on Base</h1>
-        <p class="subtitle">
-            Real-time feed of tokens deployed via Clanker, Bankr & other deployer bots.
-        </p>
+        <p class="subtitle">Real-time feed of tokens deployed via Clanker on Base. Live data, real contracts.</p>
     </section>
 
     <div class="stats-bar">
         <div class="stat">
-            <div class="stat-value" id="total-tokens">—</div>
-            <div class="stat-label">Tokens Loaded</div>
+            <div class="stat-value" id="total-deployed">—</div>
+            <div class="stat-label">Total Deployed</div>
         </div>
         <div class="stat">
-            <div class="stat-value" id="clanker-count">—</div>
-            <div class="stat-label">Clanker</div>
+            <div class="stat-value" id="tokens-loaded">—</div>
+            <div class="stat-label">Loaded</div>
         </div>
         <div class="stat">
-            <div class="stat-value" id="latest-block">—</div>
-            <div class="stat-label">Latest Block</div>
+            <div class="stat-value" id="latest-time">—</div>
+            <div class="stat-label">Latest</div>
         </div>
         <div class="stat">
             <div class="stat-value">Base</div>
@@ -498,8 +245,8 @@
 
     <div class="filter-bar">
         <button class="filter-btn active" data-filter="all">All Tokens</button>
-        <button class="filter-btn" data-filter="clanker">⚡ Clanker</button>
-        <button class="filter-btn" data-filter="other">🤖 Other</button>
+        <button class="filter-btn" data-filter="verified">✅ Verified</button>
+        <button class="filter-btn" data-filter="champagne">🍾 Champagne</button>
         <div class="filter-spacer"></div>
         <div id="status-indicator">
             <span class="dot"></span>
@@ -508,361 +255,167 @@
     </div>
 
     <section class="section">
-        <table class="feed-table">
-            <thead>
-                <tr>
-                    <th>Token</th>
-                    <th>Deployer</th>
-                    <th>Contract</th>
-                    <th>Block</th>
-                    <th>Time</th>
-                </tr>
-            </thead>
-            <tbody id="token-feed">
-                <tr class="loading-row">
-                    <td colspan="5">
-                        <span class="loading-spinner"></span>
-                        Loading latest token launches from Base...
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section class="features-section" id="features">
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📡</div>
-                <div class="feature-title">Live Data</div>
-                <div class="feature-desc">Tokens fetched directly from Base mainnet via BaseScan API. Real contracts, real launches.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <div class="feature-title">Clanker Tracking</div>
-                <div class="feature-desc">Monitors Clanker v4 factory contract for every new token deployment.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <div class="feature-title">Multi-Bot</div>
-                <div class="feature-desc">Clanker, Bankr, and more deployer bots — expanding coverage continuously.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔗</div>
-                <div class="feature-title">On-Chain Verified</div>
-                <div class="feature-desc">Every token links directly to BaseScan. Verify contracts yourself.</div>
+        <div id="token-feed" class="token-grid">
+            <div class="loading" style="grid-column: 1/-1;">
+                <span class="loading-spinner"></span>
+                Loading latest tokens from Clanker API...
             </div>
         </div>
+        <button class="load-more" id="load-more" style="display:none;" onclick="loadMore()">Load More Tokens</button>
     </section>
 
     <footer>
-        <p>© 2026 ClankerScan — Built on <a href="https://base.org" target="_blank">Base</a> | 
-        <a href="https://x.com/ClankerScan" target="_blank">Twitter</a></p>
+        <p>© 2026 ClankerScan — Data from <a href="https://clanker.world" target="_blank">Clanker API</a> | Built on <a href="https://base.org" target="_blank">Base</a> | <a href="https://x.com/ClankerScan" target="_blank">Twitter</a></p>
     </footer>
 
     <script>
-    // ============================================================
-    // ClankerScan — Live Token Feed from Base Mainnet
-    // Uses BaseScan API (free) to fetch Clanker factory deploys
-    // ============================================================
-
-    const CONFIG = {
-        // Clanker v4 Factory on Base Mainnet
-        CLANKER_FACTORY: '0xE85A59c628F7d27878ACeB4bf3b35733630083a9',
-        
-        // BaseScan API (free tier, 5 calls/sec)
-        BASESCAN_API: 'https://api.basescan.org/api',
-        BASESCAN_KEY: 'YourApiKeyToken', // works without key at lower rate
-        
-        // Base RPC (public)
-        BASE_RPC: 'https://mainnet.base.org',
-        
-        // Refresh interval (ms)
-        REFRESH_INTERVAL: 30000, // 30 seconds
-        
-        // Max tokens to show
-        MAX_TOKENS: 50,
-    };
-
-    // Known deployer addresses
-    const KNOWN_DEPLOYERS = {
-        [CONFIG.CLANKER_FACTORY.toLowerCase()]: { name: 'Clanker', tag: 'clanker' },
-    };
-
+    const API_BASE = 'https://www.clanker.world/api/tokens';
+    const REFRESH_MS = 30000;
     let allTokens = [];
+    let cursor = null;
     let currentFilter = 'all';
+    let totalDeployed = 0;
 
-    // ---- BaseScan API: Get internal txs (contract creations) from Clanker factory ----
-    async function fetchClankerTokens() {
-        try {
-            updateStatus('Fetching from BaseScan...');
-            
-            // Get latest internal transactions (contract creations) from Clanker factory
-            const url = `${CONFIG.BASESCAN_API}?module=account&action=txlist&address=${CONFIG.CLANKER_FACTORY}&startblock=0&endblock=99999999&page=1&offset=${CONFIG.MAX_TOKENS}&sort=desc&apikey=${CONFIG.BASESCAN_KEY}`;
-            
-            const resp = await fetch(url);
-            const data = await resp.json();
-            
-            if (data.status === '1' && data.result) {
-                const tokens = data.result
-                    .filter(tx => tx.functionName && tx.functionName.startsWith('deployToken'))
-                    .map(tx => ({
-                        hash: tx.hash,
-                        from: tx.from,
-                        to: tx.to,
-                        contractAddress: tx.contractAddress || tx.to,
-                        blockNumber: parseInt(tx.blockNumber),
-                        timestamp: parseInt(tx.timeStamp),
-                        deployer: 'clanker',
-                        // Try to decode token name from input (simplified)
-                        input: tx.input,
-                        gasUsed: tx.gasUsed,
-                    }));
-                
-                return tokens;
-            }
+    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
 
-            // Fallback: try getting contract creation txs
-            const url2 = `${CONFIG.BASESCAN_API}?module=account&action=txlistinternal&address=${CONFIG.CLANKER_FACTORY}&startblock=0&endblock=99999999&page=1&offset=${CONFIG.MAX_TOKENS}&sort=desc&apikey=${CONFIG.BASESCAN_KEY}`;
-            
-            const resp2 = await fetch(url2);
-            const data2 = await resp2.json();
-            
-            if (data2.status === '1' && data2.result) {
-                return data2.result
-                    .filter(tx => tx.type === 'create' || tx.contractAddress)
-                    .slice(0, CONFIG.MAX_TOKENS)
-                    .map(tx => ({
-                        hash: tx.hash,
-                        from: tx.from,
-                        to: tx.to,
-                        contractAddress: tx.contractAddress || tx.to,
-                        blockNumber: parseInt(tx.blockNumber),
-                        timestamp: parseInt(tx.timeStamp),
-                        deployer: 'clanker',
-                        input: '',
-                        gasUsed: tx.gasUsed || '0',
-                    }));
-            }
-            
-            return [];
-        } catch (err) {
-            console.error('Fetch error:', err);
-            updateStatus('Error — retrying...');
-            return [];
-        }
-    }
-
-    // ---- Try to get token info via BaseScan ----
-    async function getTokenInfo(contractAddress) {
-        try {
-            // ERC-20 name() and symbol() calls
-            const nameCall = `${CONFIG.BASE_RPC}`;
-            
-            const [nameResp, symbolResp] = await Promise.all([
-                fetch(nameCall, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        jsonrpc: '2.0', id: 1, method: 'eth_call',
-                        params: [{ to: contractAddress, data: '0x06fdde03' }, 'latest']
-                    })
-                }),
-                fetch(nameCall, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        jsonrpc: '2.0', id: 2, method: 'eth_call',
-                        params: [{ to: contractAddress, data: '0x95d89b41' }, 'latest']
-                    })
-                })
-            ]);
-
-            const nameData = await nameResp.json();
-            const symbolData = await symbolResp.json();
-
-            const name = decodeString(nameData.result);
-            const symbol = decodeString(symbolData.result);
-
-            return { name: name || 'Unknown Token', symbol: symbol || '???' };
-        } catch {
-            return { name: 'Unknown Token', symbol: '???' };
-        }
-    }
-
-    // ---- Decode ABI-encoded string ----
-    function decodeString(hex) {
-        if (!hex || hex === '0x' || hex.length < 130) return '';
-        try {
-            // Offset is at bytes 0-32, length at 32-64, data starts at 64
-            const len = parseInt(hex.slice(130, 194), 16);
-            const data = hex.slice(194, 194 + len * 2);
-            let str = '';
-            for (let i = 0; i < data.length; i += 2) {
-                const code = parseInt(data.substr(i, 2), 16);
-                if (code === 0) break;
-                str += String.fromCharCode(code);
-            }
-            return str;
-        } catch {
-            return '';
-        }
-    }
-
-    // ---- Format time ago ----
-    function timeAgo(timestamp) {
-        const now = Math.floor(Date.now() / 1000);
-        const diff = now - timestamp;
+    function timeAgo(ts) {
+        const diff = Math.floor((Date.now() - new Date(ts).getTime()) / 1000);
         if (diff < 60) return `${diff}s ago`;
         if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
         if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
         return `${Math.floor(diff / 86400)}d ago`;
     }
 
-    // ---- Shorten address ----
-    function shortAddr(addr) {
-        if (!addr) return '—';
-        return addr.slice(0, 6) + '...' + addr.slice(-4);
+    function shortAddr(a) { return a ? a.slice(0, 6) + '…' + a.slice(-4) : '—'; }
+
+    function formatMcap(m) {
+        if (!m || m === 0) return '$0';
+        if (m >= 1e6) return '$' + (m / 1e6).toFixed(1) + 'M';
+        if (m >= 1e3) return '$' + (m / 1e3).toFixed(1) + 'K';
+        return '$' + m.toFixed(2);
     }
 
-    // ---- Update status indicator ----
-    function updateStatus(text) {
-        document.getElementById('status-text').textContent = text;
+    function renderCard(t, isNew) {
+        const verified = t.tags?.verified;
+        const champagne = t.tags?.champagne;
+        const mcap = t.related?.market?.marketCap || t.starting_market_cap || 0;
+        const vol = t.related?.market?.volume24h || 0;
+        const imgUrl = t.img_url;
+
+        return `
+        <div class="token-card ${isNew ? 'new' : ''}" data-verified="${verified}" data-champagne="${champagne}" 
+             onclick="window.open('https://www.clanker.world/clanker/${t.contract_address}','_blank')">
+            <div class="token-header">
+                ${imgUrl 
+                    ? `<img src="${escapeHtml(imgUrl)}" class="token-img" onerror="this.outerHTML='<div class=token-img-placeholder>${escapeHtml((t.symbol||'?')[0].toUpperCase())}</div>'">`
+                    : `<div class="token-img-placeholder">${escapeHtml((t.symbol || '?')[0].toUpperCase())}</div>`
+                }
+                <div>
+                    <div class="token-title">${escapeHtml(t.name)}</div>
+                    <div class="token-symbol">$${escapeHtml(t.symbol)}</div>
+                </div>
+            </div>
+            <div class="token-meta">
+                <span class="tag tag-clanker">⚡ Clanker v4</span>
+                ${verified ? '<span class="tag tag-verified">✅ Verified</span>' : ''}
+                ${champagne ? '<span class="tag tag-champagne">🍾 Champagne</span>' : ''}
+            </div>
+            <div class="token-details">
+                <div class="detail-item">
+                    <div class="detail-label">Market Cap</div>
+                    <div class="detail-value">${formatMcap(mcap)}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Volume 24h</div>
+                    <div class="detail-value">${formatMcap(vol)}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Contract</div>
+                    <div class="detail-value">${shortAddr(t.contract_address)}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Pair</div>
+                    <div class="detail-value">${t.pair || 'WETH'}</div>
+                </div>
+            </div>
+            <div class="token-footer">
+                <span class="token-time">${timeAgo(t.deployed_at || t.created_at)}</span>
+                <div class="token-links">
+                    <a href="https://basescan.org/address/${t.contract_address}" target="_blank" onclick="event.stopPropagation()">BaseScan</a>
+                </div>
+            </div>
+        </div>`;
     }
 
-    // ---- Render token feed ----
-    function renderFeed(tokens) {
+    function renderFeed() {
         const feed = document.getElementById('token-feed');
-        
-        const filtered = currentFilter === 'all' 
-            ? tokens 
-            : currentFilter === 'clanker'
-                ? tokens.filter(t => t.deployer === 'clanker')
-                : tokens.filter(t => t.deployer !== 'clanker');
+        let filtered = allTokens;
+        if (currentFilter === 'verified') filtered = allTokens.filter(t => t.tags?.verified);
+        if (currentFilter === 'champagne') filtered = allTokens.filter(t => t.tags?.champagne);
 
         if (filtered.length === 0) {
-            feed.innerHTML = `<tr><td colspan="5" class="error-msg">No tokens found. Refreshing...</td></tr>`;
+            feed.innerHTML = '<div class="loading" style="grid-column:1/-1;">No tokens match this filter.</div>';
             return;
         }
-
-        feed.innerHTML = filtered.map((token, i) => `
-            <tr class="${i < 3 && token._new ? 'new-token' : ''}" onclick="window.open('https://basescan.org/tx/${token.hash}', '_blank')">
-                <td>
-                    <div class="token-info">
-                        <div class="token-icon">${(token.symbol || '?').charAt(0).toUpperCase()}</div>
-                        <div>
-                            <div class="token-name">${escapeHtml(token.name || 'Loading...')}</div>
-                            <div class="token-ticker">$${escapeHtml(token.symbol || '...')}</div>
-                        </div>
-                    </div>
-                </td>
-                <td><span class="tag tag-${token.deployer || 'unknown'}">${token.deployer === 'clanker' ? '⚡ Clanker' : '🤖 Other'}</span></td>
-                <td><a class="addr" href="https://basescan.org/address/${token.contractAddress}" target="_blank" onclick="event.stopPropagation()">${shortAddr(token.contractAddress)}</a></td>
-                <td class="mono dim">${token.blockNumber.toLocaleString()}</td>
-                <td class="dim" style="font-size: 12px;">${timeAgo(token.timestamp)}</td>
-            </tr>
-        `).join('');
+        feed.innerHTML = filtered.map((t, i) => renderCard(t, i < 3 && t._new)).join('');
     }
 
-    function escapeHtml(str) {
-        const div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
-    }
+    async function fetchTokens(loadMore = false) {
+        try {
+            document.getElementById('status-text').textContent = 'Fetching...';
+            const url = loadMore && cursor 
+                ? `${API_BASE}?limit=20&cursor=${encodeURIComponent(cursor)}`
+                : `${API_BASE}?limit=20`;
 
-    // ---- Main load function ----
-    async function loadTokens() {
-        const rawTokens = await fetchClankerTokens();
-        
-        if (rawTokens.length === 0) {
-            updateStatus('No data — will retry');
-            return;
-        }
+            const resp = await fetch(url);
+            const data = await resp.json();
 
-        // Get token info for first batch (rate limit friendly)
-        const enrichedTokens = [];
-        
-        // Batch: get info for up to 10 tokens at a time to avoid rate limits
-        for (let i = 0; i < Math.min(rawTokens.length, CONFIG.MAX_TOKENS); i++) {
-            const token = rawTokens[i];
-            
-            // Check if we already have this token
-            const existing = allTokens.find(t => t.hash === token.hash);
-            if (existing) {
-                enrichedTokens.push(existing);
-                continue;
-            }
+            if (data.data && data.data.length > 0) {
+                if (loadMore) {
+                    allTokens = [...allTokens, ...data.data];
+                } else {
+                    // Mark new tokens
+                    const oldHashes = new Set(allTokens.map(t => t.tx_hash));
+                    data.data.forEach(t => { t._new = !oldHashes.has(t.tx_hash); });
+                    // Merge: new ones first, then existing
+                    const newTokens = data.data.filter(t => t._new);
+                    const existing = allTokens.filter(t => !data.data.find(d => d.tx_hash === t.tx_hash));
+                    allTokens = [...newTokens, ...data.data.filter(t => !t._new), ...existing].slice(0, 100);
+                }
 
-            // Try to get token info from contract
-            // We look for created contracts in internal txs
-            let contractAddr = token.contractAddress;
-            
-            // For Clanker deploys, the actual token is created as internal tx
-            // We'll use the tx hash to find internal creations
-            if (!contractAddr || contractAddr === CONFIG.CLANKER_FACTORY) {
-                // Fetch internal txs for this specific tx
-                try {
-                    const intUrl = `${CONFIG.BASESCAN_API}?module=account&action=txlistinternal&txhash=${token.hash}&apikey=${CONFIG.BASESCAN_KEY}`;
-                    const intResp = await fetch(intUrl);
-                    const intData = await intResp.json();
-                    
-                    if (intData.status === '1' && intData.result) {
-                        const creation = intData.result.find(t => t.type === 'create');
-                        if (creation) {
-                            contractAddr = creation.contractAddress;
-                        }
-                    }
-                    // Small delay to respect rate limits
-                    await new Promise(r => setTimeout(r, 250));
-                } catch {}
-            }
+                cursor = data.cursor;
+                totalDeployed = data.tokensDeployed || totalDeployed;
 
-            if (contractAddr && contractAddr !== CONFIG.CLANKER_FACTORY) {
-                const info = await getTokenInfo(contractAddr);
-                token.name = info.name;
-                token.symbol = info.symbol;
-                token.contractAddress = contractAddr;
-                // Rate limit: small delay between RPC calls
-                await new Promise(r => setTimeout(r, 150));
+                document.getElementById('total-deployed').textContent = totalDeployed.toLocaleString();
+                document.getElementById('tokens-loaded').textContent = allTokens.length;
+                document.getElementById('latest-time').textContent = timeAgo(allTokens[0]?.deployed_at);
+                document.getElementById('load-more').style.display = cursor ? 'block' : 'none';
+
+                renderFeed();
+                document.getElementById('status-text').textContent = `Live — ${allTokens.length} tokens`;
             } else {
-                token.name = 'Token Deploy';
-                token.symbol = 'TX';
-                token.contractAddress = token.to || token.hash;
+                document.getElementById('status-text').textContent = 'No new tokens';
             }
-
-            token._new = !allTokens.find(t => t.hash === token.hash);
-            enrichedTokens.push(token);
+        } catch (err) {
+            console.error(err);
+            document.getElementById('status-text').textContent = 'Error — retrying...';
         }
-
-        allTokens = enrichedTokens;
-
-        // Update stats
-        document.getElementById('total-tokens').textContent = allTokens.length;
-        document.getElementById('clanker-count').textContent = allTokens.filter(t => t.deployer === 'clanker').length;
-        if (allTokens.length > 0) {
-            document.getElementById('latest-block').textContent = allTokens[0].blockNumber.toLocaleString();
-        }
-
-        renderFeed(allTokens);
-        updateStatus(`Live — ${allTokens.length} tokens loaded`);
     }
 
-    // ---- Filter buttons ----
+    function loadMore() { fetchTokens(true); }
+
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentFilter = btn.dataset.filter;
-            renderFeed(allTokens);
+            renderFeed();
         });
     });
 
-    // ---- Init ----
-    (async function init() {
-        await loadTokens();
-        
-        // Auto-refresh
-        setInterval(loadTokens, CONFIG.REFRESH_INTERVAL);
-    })();
+    // Init
+    fetchTokens();
+    setInterval(() => fetchTokens(false), REFRESH_MS);
     </script>
 </body>
 </html>
