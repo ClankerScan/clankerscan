@@ -258,7 +258,8 @@
         <div id="token-feed" class="token-grid">
             <div class="loading" style="grid-column: 1/-1;">
                 <span class="loading-spinner"></span>
-                Loading latest tokens from Clanker API...
+                Loading latest tokens from Base mainnet...<br>
+                <span style="font-size:12px; color: var(--text-muted); margin-top:8px; display:block;">First load may take a few seconds</span>
             </div>
         </div>
         <button class="load-more" id="load-more" style="display:none;" onclick="loadMore()">Load More Tokens</button>
@@ -271,7 +272,6 @@
     <script>
     const CLANKER_API = 'https://www.clanker.world/api/tokens';
     const CORS_PROXIES = [
-        'https://corsproxy.io/?',
         'https://api.allorigins.win/raw?url=',
     ];
     let proxyIndex = 0;
