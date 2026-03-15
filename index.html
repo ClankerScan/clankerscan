@@ -273,7 +273,6 @@
     const CORS_PROXIES = [
         'https://corsproxy.io/?',
         'https://api.allorigins.win/raw?url=',
-        'https://api.codetabs.com/v1/proxy?quest=',
     ];
     let proxyIndex = 0;
     const REFRESH_MS = 30000;
@@ -378,24 +377,36 @@
             document.getElementById('status-text').textContent = 'Fetching...';
             const params = loadMore && cursor 
                 ? `limit=20&cursor=${encodeURIComponent(cursor)}`
-                : 'limit=20';
+                : 'limit=12';
 
-            let resp, data;
-            // Try direct first, then proxies on failure
-            for (let attempt = 0; attempt <= CORS_PROXIES.length; attempt++) {
+            let data;
+            const rawUrl = `${CLANKER_API}?${params}`;
+            
+            // If we know which proxy works, use it directly
+            if (proxyIndex > 0) {
                 try {
-                    const url = attempt === 0 
-                        ? `${CLANKER_API}?${params}`
-                        : CORS_PROXIES[(attempt - 1) % CORS_PROXIES.length] + encodeURIComponent(`${CLANKER_API}?${params}`);
-                    resp = await fetch(url);
+                    const url = CORS_PROXIES[(proxyIndex - 1)] + encodeURIComponent(rawUrl);
+                    const resp = await fetch(url);
                     data = await resp.json();
-                    if (data.data) {
-                        proxyIndex = attempt;
-                        break;
+                    if (data.data) { /* good */ }
+                    else { proxyIndex = 0; throw new Error('bad data'); }
+                } catch { proxyIndex = 0; }
+            }
+            
+            // Try direct, then proxies
+            if (!data || !data.data) {
+                for (let i = 0; i <= CORS_PROXIES.length; i++) {
+                    try {
+                        const url = i === 0 ? rawUrl : CORS_PROXIES[i-1] + encodeURIComponent(rawUrl);
+                        const controller = new AbortController();
+                        const timeout = setTimeout(() => controller.abort(), 8000);
+                        const resp = await fetch(url, { signal: controller.signal });
+                        clearTimeout(timeout);
+                        data = await resp.json();
+                        if (data.data) { proxyIndex = i; break; }
+                    } catch (e) {
+                        if (i === CORS_PROXIES.length) throw e;
                     }
-                } catch (e) {
-                    if (attempt === CORS_PROXIES.length) throw e;
-                    continue;
                 }
             }
 
