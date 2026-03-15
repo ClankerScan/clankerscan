@@ -14,18 +14,21 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --bg: #0a0a0f;
-            --bg-card: #12121a;
-            --bg-card-hover: #1a1a25;
-            --border: #1e1e2e;
-            --blue: #3b82f6;
-            --blue-glow: rgba(59, 130, 246, 0.15);
-            --green: #22c55e;
+            --bg: #000000;
+            --bg-card: #0A1628;
+            --bg-card-hover: #0f1f35;
+            --border: #1a2a40;
+            --blue: #00BFFF;
+            --blue-glow: rgba(0, 191, 255, 0.12);
+            --green: #00e5a0;
             --red: #ef4444;
             --yellow: #eab308;
-            --text: #e2e8f0;
-            --text-dim: #64748b;
-            --text-muted: #475569;
+            --text: #A8B5C2;
+            --text-dim: #6B7B8C;
+            --text-muted: #3a4f65;
+            --cyan: #00BFFF;
+            --silver: #A8B5C2;
+            --steel: #6B7B8C;
         }
         
         body {
@@ -40,8 +43,8 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-image: 
-                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(0, 191, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
             background-size: 60px 60px;
             z-index: 0;
         }
@@ -51,7 +54,7 @@
             top: -200px; left: 50%;
             transform: translateX(-50%);
             width: 800px; height: 600px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.06) 0%, transparent 70%);
             z-index: 0;
         }
 
@@ -62,7 +65,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 15, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             z-index: 100;
@@ -78,12 +81,13 @@
 
         .logo-icon {
             width: 32px; height: 32px;
-            background: var(--blue);
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%; height: 100%;
+            object-fit: cover;
         }
 
         .nav-links {
@@ -103,17 +107,18 @@
         .nav-links a:hover { color: var(--text); }
 
         .nav-btn {
-            background: var(--blue);
+            background: linear-gradient(135deg, #005F73, #00BFFF);
             color: white !important;
             padding: 8px 16px;
             border-radius: 8px;
             font-weight: 600;
             font-size: 13px;
             text-decoration: none;
-            transition: opacity 0.2s;
+            transition: all 0.2s;
+            border: 1px solid rgba(0, 191, 255, 0.3);
         }
 
-        .nav-btn:hover { opacity: 0.9; }
+        .nav-btn:hover { box-shadow: 0 0 16px rgba(0, 191, 255, 0.3); }
 
         /* Hero */
         .hero {
@@ -159,7 +164,7 @@
             letter-spacing: -0.02em;
         }
 
-        h1 span { color: var(--blue); }
+        h1 span { color: var(--cyan); }
 
         .subtitle {
             font-size: 16px;
@@ -224,7 +229,7 @@
         }
 
         .filter-btn:hover { border-color: var(--text-muted); color: var(--text); }
-        .filter-btn.active { background: var(--blue); border-color: var(--blue); color: white; }
+        .filter-btn.active { background: linear-gradient(135deg, #005F73, #00BFFF); border-color: var(--cyan); color: white; }
 
         .filter-spacer { flex: 1; }
 
@@ -323,8 +328,8 @@
         }
 
         .tag-clanker {
-            background: rgba(139, 92, 246, 0.15);
-            color: #a78bfa;
+            background: rgba(0, 191, 255, 0.12);
+            color: #00BFFF;
         }
 
         .tag-bankr {
@@ -376,7 +381,7 @@
         }
 
         @keyframes fadeIn {
-            from { background: rgba(59, 130, 246, 0.1); }
+            from { background: rgba(0, 191, 255, 0.08); }
             to { background: transparent; }
         }
 
@@ -450,8 +455,8 @@
 
     <nav>
         <div class="logo">
-            <div class="logo-icon">🔍</div>
-            ClankerScan
+            <div class="logo-icon"><img src="logo.jpg" alt="ClankerScan"></div>
+            <span style="color: var(--silver)">Clanker</span><span style="color: var(--cyan)">Scan</span>
         </div>
         <div class="nav-links">
             <a href="#features">Features</a>
