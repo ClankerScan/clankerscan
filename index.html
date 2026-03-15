@@ -269,12 +269,25 @@
     </footer>
 
     <script>
-    const API_BASE = 'https://www.clanker.world/api/tokens';
+    const CLANKER_API = 'https://www.clanker.world/api/tokens';
+    const CORS_PROXIES = [
+        'https://corsproxy.io/?',
+        'https://api.allorigins.win/raw?url=',
+        'https://api.codetabs.com/v1/proxy?quest=',
+    ];
+    let proxyIndex = 0;
     const REFRESH_MS = 30000;
     let allTokens = [];
     let cursor = null;
     let currentFilter = 'all';
     let totalDeployed = 0;
+
+    function getApiUrl(params) {
+        const base = `${CLANKER_API}?${params}`;
+        // Try direct first, then proxies
+        if (proxyIndex === 0) return base;
+        return CORS_PROXIES[(proxyIndex - 1) % CORS_PROXIES.length] + encodeURIComponent(base);
+    }
 
     function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
 
@@ -363,12 +376,28 @@
     async function fetchTokens(loadMore = false) {
         try {
             document.getElementById('status-text').textContent = 'Fetching...';
-            const url = loadMore && cursor 
-                ? `${API_BASE}?limit=20&cursor=${encodeURIComponent(cursor)}`
-                : `${API_BASE}?limit=20`;
+            const params = loadMore && cursor 
+                ? `limit=20&cursor=${encodeURIComponent(cursor)}`
+                : 'limit=20';
 
-            const resp = await fetch(url);
-            const data = await resp.json();
+            let resp, data;
+            // Try direct first, then proxies on failure
+            for (let attempt = 0; attempt <= CORS_PROXIES.length; attempt++) {
+                try {
+                    const url = attempt === 0 
+                        ? `${CLANKER_API}?${params}`
+                        : CORS_PROXIES[(attempt - 1) % CORS_PROXIES.length] + encodeURIComponent(`${CLANKER_API}?${params}`);
+                    resp = await fetch(url);
+                    data = await resp.json();
+                    if (data.data) {
+                        proxyIndex = attempt;
+                        break;
+                    }
+                } catch (e) {
+                    if (attempt === CORS_PROXIES.length) throw e;
+                    continue;
+                }
+            }
 
             if (data.data && data.data.length > 0) {
                 if (loadMore) {
