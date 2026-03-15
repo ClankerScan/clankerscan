@@ -271,10 +271,8 @@
 
     <script>
     const CLANKER_API = 'https://www.clanker.world/api/tokens';
-    const CORS_PROXIES = [
-        'https://api.allorigins.win/raw?url=',
-    ];
-    let proxyIndex = 0;
+    // Use allorigins as reliable CORS proxy
+    const PROXY = 'https://api.allorigins.win/raw?url=';
     const REFRESH_MS = 30000;
     let allTokens = [];
     let cursor = null;
@@ -282,10 +280,7 @@
     let totalDeployed = 0;
 
     function getApiUrl(params) {
-        const base = `${CLANKER_API}?${params}`;
-        // Try direct first, then proxies
-        if (proxyIndex === 0) return base;
-        return CORS_PROXIES[(proxyIndex - 1) % CORS_PROXIES.length] + encodeURIComponent(base);
+        return PROXY + encodeURIComponent(`${CLANKER_API}?${params}`);
     }
 
     function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
@@ -379,36 +374,9 @@
                 ? `limit=20&cursor=${encodeURIComponent(cursor)}`
                 : 'limit=12';
 
-            let data;
-            const rawUrl = `${CLANKER_API}?${params}`;
-            
-            // If we know which proxy works, use it directly
-            if (proxyIndex > 0) {
-                try {
-                    const url = CORS_PROXIES[(proxyIndex - 1)] + encodeURIComponent(rawUrl);
-                    const resp = await fetch(url);
-                    data = await resp.json();
-                    if (data.data) { /* good */ }
-                    else { proxyIndex = 0; throw new Error('bad data'); }
-                } catch { proxyIndex = 0; }
-            }
-            
-            // Try direct, then proxies
-            if (!data || !data.data) {
-                for (let i = 0; i <= CORS_PROXIES.length; i++) {
-                    try {
-                        const url = i === 0 ? rawUrl : CORS_PROXIES[i-1] + encodeURIComponent(rawUrl);
-                        const controller = new AbortController();
-                        const timeout = setTimeout(() => controller.abort(), 8000);
-                        const resp = await fetch(url, { signal: controller.signal });
-                        clearTimeout(timeout);
-                        data = await resp.json();
-                        if (data.data) { proxyIndex = i; break; }
-                    } catch (e) {
-                        if (i === CORS_PROXIES.length) throw e;
-                    }
-                }
-            }
+            const url = getApiUrl(params);
+            const resp = await fetch(url);
+            const data = await resp.json();
 
             if (data.data && data.data.length > 0) {
                 if (loadMore) {
